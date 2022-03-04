@@ -28,9 +28,16 @@ def get_blog(post_id):
     return render_template('blog.html', blog=blogs_data[post_id - 1])
 
 
-@app.route('/compose')
+@app.route('/compose', methods=['GET', 'POST'])
 def compose_post():
-    return render_template('compose.html')
+    if request.method == 'GET':
+        return render_template('compose.html')
+    # method is POST
+    title = request.form['title']
+    subtitle = request.form['subtitle']
+    body = request.form['body']
+    # MUST SAVE THIS IN DB
+    return f'Title: {title} Subtitle:{subtitle} Post: {body}'
 
 
 @app.route('/about')
@@ -53,6 +60,7 @@ def contact():
         return render_template('contact.html', msg_sent=True)
 
 
+# Send message using Gmail smtplib
 def send_email(name, email, message):
     email_message = f"Subject:New Message\n\nName: {name}\nEmail: {email}\nMessage: {message}"
     with smtplib.SMTP("smtp.gmail.com", port=587) as connection:

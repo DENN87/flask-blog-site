@@ -4,16 +4,21 @@
       <div class="p-5 m-5 bg-light border rounded-3">
           <div class="container-fluid">
             <h1 class="display-5 fw-bold">Compose</h1>
-                 <form action="/compose" method="post" class="item">
+                 <form action="/compose" method="POST" class="item">
                       <div class="m-top">
                                 <label for="exampleFormControlInput1" class="form-label">Title</label>
-                                <input type="text" name="compTitle" class="form-control" autocomplete="off"
-                                     id="exampleFormControlInput1" placeholder="name@example.com">
-                           <div class="m-top mb-3">
-                                <label for="exampleFormControlTextarea1" class="form-label mt-3">Post</label>
-                                <textarea name="compBody" class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
-                           </div>
-                           <button type="submit" name="button" class="btn btn-primary m-top">Publish</button>
+                                <input type="text" name="title" class="form-control" autocomplete="off"
+                                     id="exampleFormControlInput1" placeholder="" required>
+
+                                <label for="exampleFormControlInput2" class="form-label">Subtitle</label>
+                                <input type="text" name="subtitle" class="form-control" autocomplete="off"
+                                     id="exampleFormControlInput2" placeholder="">
+
+                               <div class="m-top mb-3">
+                                    <label for="exampleFormControlTextarea1" class="form-label mt-3">Post</label>
+                                    <textarea name="body" class="form-control" id="exampleFormControlTextarea1" rows="5" required></textarea>
+                               </div>
+                               <button type="submit" name="button" class="btn btn-primary m-top">Publish</button>
                       </div>
                  </form>
           </div>
