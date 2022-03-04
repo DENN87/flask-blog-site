@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Daily Blog</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/styles.css">
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand">DAILY BLOG</a>
+      </div>
+      <ul class="nav navbar-nav navbar-right">
+        <!-- 6 -->
+        <li id="home"><a href="/">HOME</a></li>
+        <li id="about"><a href="/about">ABOUT US</a></li>
+        <li id="contact"><a href="/contact">CONTACT US</a></li>
+      </ul>
+    </div>
+  </nav>
+
+<body>
+  <div class="container">
+     <h1>Compose</h1>
+     <form action="/compose" method="post" class="item">
+          <div class="m-top">
+               <div class="">
+                    <label for="exampleFormControlInput1" class="form-label">Title</label>
+                    <input type="text" name="compTitle" class="form-control" autocomplete="off"
+                         id="exampleFormControlInput1" placeholder="name@example.com">
+               </div>
+               <div class="m-top">
+                    <label for="exampleFormControlTextarea1" class="form-label">Post</label>
+                    <textarea name="compBody" class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
+               </div>
+               <button type="submit" name="button" class="btn btn-primary m-top">Publish</button>
+          </div>
+     </form>
+
+    </div>
+<div class="footer-padding"></div>
+<div class="footer">
+  <p>Created by Denis Schiopu</p>
+</div>
+</div>
+</body>
+
+</html>

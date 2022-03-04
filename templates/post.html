@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Daily Blog</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/styles.css">
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand">DAILY BLOG</a>
+      </div>
+      <ul class="nav navbar-nav navbar-right">
+        <!-- 6 -->
+        <li id="home"><a href="/">HOME</a></li>
+        <li id="about"><a href="/about">ABOUT US</a></li>
+        <li id="contact"><a href="/contact">CONTACT US</a></li>
+      </ul>
+    </div>
+  </nav>
+
+<body>
+  <div class="container">
+
+     <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark">
+          <div class="px-0">
+               <h1 class="display-4 fst-italic">
+                    <%= blogTitle %>
+               </h1>
+               <p class="lead m-top">
+                    <%= blogBody %>
+               </p>
+          </div>
+     </div>
+
+   </div>
+<div class="footer-padding"></div>
+<div class="footer">
+  <p>Created by Denis Schiopu</p>
+</div>
+</div>
+</body>
+
+</html>
