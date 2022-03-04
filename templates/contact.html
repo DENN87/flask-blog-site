@@ -1,12 +1,40 @@
 {% include "header.html" %}
   <div class="container">
-    <div class="p-5 m-5 bg-light border rounded-3">
-      <div class="container-fluid py-5">
+    <div class="p-5 m-5 bg-light border rounded-3 w-75 mx-auto">
+      <div class="container-fluid py-5 p-0">
+        {% if msg_sent: %}
+        <h1 class="display-5 fw-bold">Successfully sent your message !</h1>
+        {% else: %}
         <h1 class="display-5 fw-bold">Contact Me</h1>
-      <p>
-          Lorem ipsum dolor amet mustache knausgaard +1, blue bottle waistcoat tbh semiotics artisan synth stumptown gastropub cornhole celiac swag. Brunch raclette vexillologist post-ironic glossier ennui XOXO mlkshk godard pour-over blog tumblr humblebrag. Blue bottle put a bird on it twee prism biodiesel brooklyn. Blue bottle ennui tbh succulents.
-     </p>
-        <a href="/" class="btn btn-outline-secondary" type="button">Back</a>
+        <span class="subheading text-muted">Have questions? I have answers.</span>
+          <div class="col">
+
+                <form action="/contact" method="POST">
+                  <div class="row g-3 mt-3">
+                    <div class="col-sm-6">
+                      <label for="firstName" class="form-label">First name</label>
+                      <input type="text" name="userName" class="form-control" id="firstName" placeholder="" value="" required="">
+                      <div class="invalid-feedback">
+                        Valid first name is required.
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <label for="email" class="form-label">Email</label>
+                      <input type="email" name="userEmail" class="form-control" id="email" placeholder="you@example.com">
+                      <div class="invalid-feedback">
+                        Please enter a valid email address for shipping updates.
+                      </div>
+                    </div>
+                  </div>
+                  <hr class="my-4">
+                    <div class="mb-3">
+                      <label for="exampleFormControlTextarea1" class="form-label">Message</label>
+                      <textarea name="userText" class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
+                    </div>
+                    <button class="btn btn-outline-primary w-25" type="submit">Send</button>
+                </form>
+          </div>
+        {% endif %}
       </div>
     </div>
   </div>
