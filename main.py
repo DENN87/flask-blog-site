@@ -1,72 +1,39 @@
-import os
 
-from flask import Flask, render_template, request
-import requests
-from dotenv import load_dotenv
-# for sending emails
-import smtplib
-
-# take environment variables from .env.
-load_dotenv()
-OWN_EMAIL = os.environ.get('OWN_EMAIL')
-OWN_PASSWORD = os.environ.get('OWN_PASSWORD')
-
+from flask import Flask, render_template, request, g, jsonify, Response
+from flask_jwt import JWT, jwt_required, current_identity
+from werkzeug.exceptions import abort
+from secure_check import authenticate, identity
+from controllers.login import login
+from controllers.blog import blog
+from controllers.contact import contact
+from controllers.about import about
 app = Flask(__name__)
 
-api_url = 'https://api.npoint.io/38823c0454884cd19c9c'
-data_response = requests.get(api_url)
-blogs_data = data_response.json()
+
+app.config['SECRET_KEY'] = 'my_secret_key'
+jwt = JWT(app, authenticate, identity)
+app.register_blueprint(login)
+app.register_blueprint(blog)
+app.register_blueprint(contact)
+app.register_blueprint(about)
 
 
-@app.route('/')
-def home():
-    return render_template('home.html', blogs=blogs_data)
+@app.errorhandler(401)
+def custom_401(error):
+    return Response('Missing JWT in header.', 401, {'Authorization': 'header is required'})
 
 
-@app.route('/blog/<int:post_id>')
-def get_blog(post_id):
-    return render_template('blog.html', blog=blogs_data[post_id - 1])
-
-
-@app.route('/compose', methods=['GET', 'POST'])
-def compose_post():
-    if request.method == 'GET':
-        return render_template('compose.html')
-    # method is POST
-    title = request.form['title']
-    subtitle = request.form['subtitle']
-    body = request.form['body']
-    # MUST SAVE THIS IN DB
-    return f'Title: {title} Subtitle:{subtitle} Post: {body}'
-
-
-@app.route('/about')
-def about():
-    return render_template('about.html')
-
-
-@app.route('/contact', methods=['GET', 'POST'])
-def contact():
-    if request.method == 'GET':
-        # return for GET
-        return render_template('contact.html', msg_sent=False)
+@app.before_request
+def authorization_handler():
+    headers = request.headers
+    if 'auth' in request.path:
+        print(request.path)
+        return
+    if 'Authorization' in headers:
+        token = headers.get('Authorization')
+        print(token)
     else:
-        # return for POST
-        form_name = request.form['userName']
-        form_email = request.form['userEmail']
-        form_text = request.form['userText']
-        # print(form_name, form_email, form_text)
-        send_email(form_name, form_email, form_text)
-        return render_template('contact.html', msg_sent=True)
-
-
-# Send message using Gmail smtplib
-def send_email(name, email, message):
-    email_message = f"Subject:New Message\n\nName: {name}\nEmail: {email}\nMessage: {message}"
-    with smtplib.SMTP("smtp.gmail.com", port=587) as connection:
-        connection.starttls()
-        connection.login(OWN_EMAIL, OWN_PASSWORD)
-        connection.sendmail(OWN_EMAIL, OWN_EMAIL, email_message)
+        abort(401)
 
 
 if __name__ == "__main__":
