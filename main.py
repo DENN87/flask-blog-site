@@ -3,19 +3,22 @@ from flask import Flask, render_template, request, g, jsonify, Response
 from flask_jwt import JWT, jwt_required, current_identity
 from werkzeug.exceptions import abort
 from secure_check import authenticate, identity
-from controllers.login import login
-from controllers.blog import blog
-from controllers.contact import contact
-from controllers.about import about
+from controllers.login import login_blueprint
+from controllers.blog import blog_blueprint
+from controllers.contact import contact_blueprint
+from controllers.about import about_blueprint
+
+
 app = Flask(__name__)
 
 
 app.config['SECRET_KEY'] = 'my_secret_key'
 jwt = JWT(app, authenticate, identity)
-app.register_blueprint(login)
-app.register_blueprint(blog)
-app.register_blueprint(contact)
-app.register_blueprint(about)
+
+app.register_blueprint(login_blueprint)
+app.register_blueprint(blog_blueprint)
+app.register_blueprint(contact_blueprint)
+app.register_blueprint(about_blueprint)
 
 
 @app.errorhandler(401)

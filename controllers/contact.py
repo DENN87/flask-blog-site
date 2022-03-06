@@ -3,10 +3,10 @@ import smtplib
 import os
 from dotenv import load_dotenv
 
-contact = Blueprint('contact', __name__)
+contact_blueprint = Blueprint('contact', __name__)
 
 
-@contact.route('/contact', methods=['GET', 'POST'])
+@contact_blueprint.route('/contact', methods=['GET', 'POST'])
 def contact():
     if request.method == 'GET':
         # return for GET
