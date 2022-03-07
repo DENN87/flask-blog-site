@@ -1,6 +1,6 @@
-from flask import Blueprint, render_template, request
 import requests
-from flask_jwt import jwt_required, current_identity
+from flask import Blueprint, render_template, request
+from flask_jwt import jwt_required
 
 blog_blueprint = Blueprint('blog', __name__)
 
@@ -22,6 +22,12 @@ def get_blog(post_id):
     return render_template('blog.html', blog=get_blogs_data()[post_id - 1])
 
 
+@blog_blueprint.route('/blog/compose', methods=['GET'])
+@jwt_required()
+def compose_get():
+    return render_template('compose.html')
+
+
 @blog_blueprint.route('/blog', methods=['POST'])
 @jwt_required()
 def post_blog():
@@ -31,11 +37,3 @@ def post_blog():
     body = request.form['body']
     # MUST SAVE THIS IN DB
     return 'DB > COMMIT > SUCCESS'
-
-
-@blog_blueprint.route('/blog/compose', methods=['GET'])
-@jwt_required()
-def compose_get():
-    return render_template('compose.html')
-
-
