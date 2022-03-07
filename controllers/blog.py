@@ -1,25 +1,19 @@
-import requests
 from flask import Blueprint, render_template, request
 from flask_jwt import jwt_required
+
+from controllers.blogpost import get_blogs, get_blog_by_id, create_post
 
 blog_blueprint = Blueprint('blog', __name__)
 
 
-def get_blogs_data():
-    api_url = 'https://api.npoint.io/38823c0454884cd19c9c'
-    data_response = requests.get(api_url)
-    blogs_data = data_response.json()
-    return blogs_data
-
-
 @blog_blueprint.route('/')
 def home():
-    return render_template('home.html', blogs=get_blogs_data())
+    return render_template('home.html', blogs=get_blogs())
 
 
 @blog_blueprint.route('/blog/<int:post_id>')
 def get_blog(post_id):
-    return render_template('blog.html', blog=get_blogs_data()[post_id - 1])
+    return render_template('blog.html', blog=get_blog_by_id(post_id))
 
 
 @blog_blueprint.route('/blog/compose', methods=['GET'])
@@ -35,5 +29,8 @@ def post_blog():
     title = request.form['title']
     subtitle = request.form['subtitle']
     body = request.form['body']
+    
+    # post_id should be generated depending on the length of the get_blogs().length
+    create_post(post_id, title, subtitle, body)
     # MUST SAVE THIS IN DB
     return 'DB > COMMIT > SUCCESS'

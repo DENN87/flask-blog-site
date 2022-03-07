@@ -1,22 +1,22 @@
-
-from flask import Flask, render_template, request, g, jsonify, Response
-from flask_jwt import JWT, jwt_required, current_identity
+from flask import Flask, request, Response
+from flask_jwt import JWT
 from werkzeug.exceptions import abort
-from secure_check import authenticate, identity
-from controllers.login import login_blueprint
-from controllers.blog import blog_blueprint
-from controllers.contact import contact_blueprint
-from controllers.about import about_blueprint
 
+from controllers.about import about_blueprint
+from controllers.blog import blog_blueprint
+from controllers.blogpost import blog_post_blueprint
+from controllers.contact import contact_blueprint
+from controllers.login import login_blueprint
+from secure_check import authenticate, identity
 
 app = Flask(__name__)
-
 
 app.config['SECRET_KEY'] = 'my_secret_key'
 jwt = JWT(app, authenticate, identity)
 
 app.register_blueprint(login_blueprint)
 app.register_blueprint(blog_blueprint)
+app.register_blueprint(blog_post_blueprint)
 app.register_blueprint(contact_blueprint)
 app.register_blueprint(about_blueprint)
 

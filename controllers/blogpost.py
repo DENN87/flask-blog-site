@@ -1,14 +1,8 @@
-"""
-    // save the json api database
-        1. end point(/blog) get list of blogposts
-        2. get blog post by id
-        3. put blog post
-        4. post blog post
-        5. delete blog post
-            2,3,4,5, return element....
-            return json
-"""
 import json
+
+from flask import Blueprint
+
+blog_post_blueprint = Blueprint('blogpost', __name__)
 
 
 # Import JSON file, Return the list of all blogs
