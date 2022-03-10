@@ -9,7 +9,7 @@ from secure_check import authenticate, identity
 
 app = Flask(__name__)
 
-app.config['SECRET_KEY'] = 'my_secret_key'
+app.config["SECRET_KEY"] = "my_secret_key"
 jwt = JWT(app, authenticate, identity)
 
 app.register_blueprint(login_blueprint)
@@ -20,7 +20,7 @@ app.register_blueprint(about_blueprint)
 
 @app.errorhandler(401)
 def custom_401(error):
-    return Response('Missing JWT in header.', 401, {'Authorization': 'header is required'})
+    return Response("Missing JWT in header.", 401, {"Authorization": "header is required"})
 
 
 # @app.before_request
