@@ -1,9 +1,7 @@
-from flask import Flask, request, Response
+from flask import Flask, Response
 from flask_jwt import JWT
-from werkzeug.exceptions import abort
 
 from controllers.about import about_blueprint
-from controllers.blog import blog_blueprint
 from controllers.blogpost import blog_post_blueprint
 from controllers.contact import contact_blueprint
 from controllers.login import login_blueprint
@@ -15,7 +13,6 @@ app.config['SECRET_KEY'] = 'my_secret_key'
 jwt = JWT(app, authenticate, identity)
 
 app.register_blueprint(login_blueprint)
-app.register_blueprint(blog_blueprint)
 app.register_blueprint(blog_post_blueprint)
 app.register_blueprint(contact_blueprint)
 app.register_blueprint(about_blueprint)
@@ -26,17 +23,17 @@ def custom_401(error):
     return Response('Missing JWT in header.', 401, {'Authorization': 'header is required'})
 
 
-@app.before_request
-def authorization_handler():
-    headers = request.headers
-    if 'auth' in request.path:
-        print(request.path)
-        return
-    if 'Authorization' in headers:
-        token = headers.get('Authorization')
-        print(token)
-    else:
-        abort(401)
+# @app.before_request
+# def authorization_handler():
+#     headers = request.headers
+#     if 'auth' in request.path:
+#         print(request.path)
+#         return
+#     if 'Authorization' in headers:
+#         token = headers.get('Authorization')
+#         print(token)
+#     else:
+#         abort(401)
 
 
 if __name__ == "__main__":
