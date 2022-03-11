@@ -1,23 +1,24 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="row align-items-md-stretch pt-5">
 
-{% for post in posts %}
-<div class="col-md-6 mb-4">
-	<div class="h-100 p-4  bg-light border rounded-3">
+	{% for post in posts %}
+	<div class="col-md-6 mb-4">
+		<div class="h-100 p-4  bg-light border rounded-3">
 
-		<h2>{{ post['title'] }}</h2>
-		<div class="about">by <strong>{{ post['username'] }}</strong> on {{ post['created'].strftime('%Y-%m-%d') }}
+			<h2>{{ post['title'] }}</h2>
+			<div class="about">by <strong>{{ post['username'] }}</strong> on {{ post['created'].strftime('%Y-%m-%d') }}
+			</div>
+			{% if g.user['id'] == post['author_id'] %}
+			<a class="action" href="{{ url_for('blog.update', id=post['id']) }}">Edit</a>
+			{% endif %}
+			<p>{{ post['body'] }}</p>
+			<!--		<a href="{{ url_for('get_blog', post_id=blog.id) }}" class="btn btn-outline-secondary" type="button">Read-->
+			<!--			More</a>-->
+
 		</div>
-		{% if g.user['id'] == post['author_id'] %}
-		<a class="action" href="{{ url_for('blog.update', id=post['id']) }}">Edit</a>
-		{% endif %}
-		<p>{{ post['body'] }}</p>
-		<!--		<a href="{{ url_for('get_blog', post_id=blog.id) }}" class="btn btn-outline-secondary" type="button">Read-->
-		<!--			More</a>-->
-
 	</div>
+	{% endfor %}
 </div>
-{% endfor %}
-
 {% endblock %}

@@ -2,6 +2,8 @@ import os
 
 from flask import Flask, render_template
 
+from flaskr import db, auth
+
 
 def create_app(test_config=None):
     # create and configure the app
@@ -24,9 +26,18 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    # a simple page that says hello
-    @app.route('/')
-    def home():
-        return render_template('base.html')
+    @app.route('/about')
+    def about():
+        return render_template('about.html')
+
+    @app.route('/contact')
+    def contact():
+        return render_template('contact.html')
+
+    # registering DB with app
+    db.init_app(app)
+
+    # registering auth Blueprint
+    app.register_blueprint(auth.auth_blueprint)
 
     return app
