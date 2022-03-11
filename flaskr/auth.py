@@ -69,7 +69,8 @@ def login():
         user = db.execute(
             'SELECT * FROM user WHERE username = ?',
             (username,)
-        ).fetchone()  # each row checks the username with a match username input
+        ).fetchone()
+        print(f'Logged In user: {user["username"]}')
 
         if user is None:
             error = 'Incorrect username.'
@@ -83,7 +84,7 @@ def login():
             # subsequent requests. Flask securely signs the data so that it can’t be tampered with.
             session.clear()
             session['user_id'] = user['id']
-            return redirect(url_for('index'))
+            return redirect(url_for('index', user=user["username"]))
 
         # If validation fails, the error is shown to the user.
         # flash() stores messages that can be retrieved when rendering the template

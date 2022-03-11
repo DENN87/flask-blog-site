@@ -1,7 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="row align-items-md-stretch pt-5">
+<div class="row align-items-md-stretch pt-5 mx-auto">
+
+	{% if posts == [] %}
+	<div class="alert alert-warning text-center" role="alert">
+		<h3>No posts found in Database, please Log In to create a new post.</h3>
+	</div>
+	{% endif %}
 
 	{% for post in posts %}
 	<div class="col-md-6 mb-4">
@@ -14,6 +20,7 @@
 			<a class="action" href="{{ url_for('blog.update', id=post['id']) }}">Edit</a>
 			{% endif %}
 			<p>{{ post['body'] }}</p>
+			<a>Likes {{ post['likes'] }}</a>
 			<!--		<a href="{{ url_for('get_blog', post_id=blog.id) }}" class="btn btn-outline-secondary" type="button">Read-->
 			<!--			More</a>-->
 
