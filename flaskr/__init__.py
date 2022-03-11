@@ -1,8 +1,8 @@
 import os
 
-from flask import Flask, render_template
+from flask import Flask
 
-from flaskr import db, auth
+from flaskr import db, auth, about, contact, blogpost
 
 
 def create_app(test_config=None):
@@ -26,18 +26,18 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    @app.route('/about')
-    def about():
-        return render_template('about.html')
-
-    @app.route('/contact')
-    def contact():
-        return render_template('contact.html')
+    @app.route('/hello')
+    def hello():
+        return 'Hello Flask world !'
 
     # registering DB with app
     db.init_app(app)
 
-    # registering auth Blueprint
+    # registering Blueprints
     app.register_blueprint(auth.auth_blueprint)
+    app.register_blueprint(about.about_blueprint)
+    app.register_blueprint(contact.contact_blueprint)
+    app.register_blueprint(blogpost.blogpost_blueprint)
+    app.add_url_rule('/', endpoint='index')
 
     return app

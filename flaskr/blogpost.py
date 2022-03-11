@@ -2,7 +2,7 @@ import json
 
 from flask import Blueprint, request
 
-blog_post_blueprint = Blueprint("blogpost", __name__)
+blogpost_blueprint = Blueprint("blogpost", __name__)
 
 
 # Import JSON file, Return the list of all blogs
