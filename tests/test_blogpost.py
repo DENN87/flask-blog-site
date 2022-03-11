@@ -1,6 +1,6 @@
 from flask import json
 
-from flaskr.main import app
+from flaskr.JWT_before_after_requests import app
 
 
 def test_get_blogs():

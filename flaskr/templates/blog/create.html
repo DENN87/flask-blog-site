@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="p-5 m-5 bg-light border rounded-3">
+	<div class="container-fluid">
+		<h1 class="display-5 fw-bold">New Post</h1>
+		<form method="POST" class="item">
+			<div class="m-top">
+				<label for="title" class="form-label">Title</label>
+				<input type="text" name="title" class="form-control" autocomplete="off"
+					   id="title" value="{{ request.form['title'] }}" required>
+
+				<div class="m-top mb-3">
+					<label for="body" class="form-label mt-3">Body</label>
+					<textarea name="body" class="form-control" id="body" rows="5"
+							  required>{{ request.form['body'] }}</textarea>
+				</div>
+				<button type="submit" name="button" class="btn btn-primary m-top">Publish</button>
+			</div>
+		</form>
+	</div>
+</div>
+{% endblock %}

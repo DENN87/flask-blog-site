@@ -1,14 +1,15 @@
-{% include "header.html" %}
-   <div class="container">
-    <div class="p-5 m-5 bg-light border rounded-3">
-      <div class="container-fluid py-5">
-        <h1 class="display-5 fw-bold">About Me</h1>
-      <p>
-          Lorem ipsum dolor amet mustache knausgaard +1, blue bottle waistcoat tbh semiotics artisan synth stumptown gastropub cornhole celiac swag. Brunch raclette vexillologist post-ironic glossier ennui XOXO mlkshk godard pour-over blog tumblr humblebrag. Blue bottle put a bird on it twee prism biodiesel brooklyn. Blue bottle ennui tbh succulents.
-     </p>
-        <a href="/" class="btn btn-outline-secondary" type="button">Back</a>
-      </div>
-    </div>
-  </div>
-{% include "footer.html" %}
+{% block content %}
+<div class="p-5 m-5 bg-light border rounded-3">
+	<div class="container-fluid py-5">
+		<h1 class="display-5 fw-bold">About Me</h1>
+		<p>
+			Lorem ipsum dolor amet mustache knausgaard +1, blue bottle waistcoat tbh semiotics artisan synth
+			stumptown gastropub cornhole celiac swag. Brunch raclette vexillologist post-ironic glossier ennui XOXO
+			mlkshk godard pour-over blog tumblr humblebrag. Blue bottle put a bird on it twee prism biodiesel
+			brooklyn. Blue bottle ennui tbh succulents.
+		</p>
+		<a href="/" class="btn btn-outline-secondary" type="button">Back</a>
+	</div>
+</div>
+{% endblock %}
 
