@@ -7,7 +7,7 @@ blog_post_blueprint = Blueprint("blogpost", __name__)
 
 # Import JSON file, Return the list of all blogs
 def load_blogs():
-    with open("../static/blogs.json", 'r') as file:
+    with open("static/blogs.json", 'r') as file:
         blogs_data = file.read()
         blogs_obj = json.loads(blogs_data)  # type list
     blogs_dict = {b["id"]: b for b in blogs_obj}  # type dict

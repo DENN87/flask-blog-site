@@ -1,10 +1,10 @@
 from flask import Flask, Response
 from flask_jwt import JWT
 
-from controllers.about import about_blueprint
-from controllers.blogpost import blog_post_blueprint
-from controllers.contact import contact_blueprint
-from controllers.login import login_blueprint
+from flaskr import about_blueprint
+from flaskr import blog_post_blueprint
+from flaskr import contact_blueprint
+from flaskr import login_blueprint
 from secure_check import authenticate, identity
 
 app = Flask(__name__)
@@ -37,4 +37,4 @@ def custom_401(error):
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(port=3000, debug=True)

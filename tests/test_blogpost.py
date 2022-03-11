@@ -1,6 +1,6 @@
 from flask import json
 
-from main import app
+from flaskr.main import app
 
 
 def test_get_blogs():
