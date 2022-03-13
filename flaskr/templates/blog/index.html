@@ -10,22 +10,38 @@
 	{% endif %}
 
 	{% for post in posts %}
+
+
 	<div class="col-md-6 mb-4">
-		<div class="h-100 p-4  bg-light border rounded-3">
+		<div class="card h-100 border rounded-3" id="blog_posts" >
+			<div class="card-title p-3 m-0">
 			{% if g.user['id'] == post['author_id'] %}
 			<div class="float-end">
-				<a class="action py-0 text-decoration-none" href="{{ url_for('blog.update', id=post['id']) }}">Edit</a>
+				<a class="text-decoration-none edit_btn" href="{{ url_for('blog.update', id=post['id']) }}">Edit</a>
 			</div>
 			{% endif %}
+
 			<h2>{{ post['title'] }}</h2>
-			<p class="text-secondary" style="font-size: 0.75rem; text-align: end;">
+			</div>
+
+			<p class="text-secondary created_by m-0 px-3">
 				by <strong class="text-primary">{{ post['username'] }}</strong> on {{ post['created'].strftime('%Y-%m-%d') }}
 			</p>
-			<p>{{ post['body'] }}</p>
-			<span class=""  style="vertical-align: -1em">Likes {{ post['likes'] }}</span>
 
+			<p class="card-body indent">{{ post['body'] }}</p>
+
+			<div class="card-footer p-1">
+				<a href="#" class="like_post">
+					<i class="fas fa-thumbs-up fa-md" aria-hidden="true"></i>
+					{% if post['likes'] != None %}
+ 					{{ post['likes'] }}
+					{% endif %}
+				</a>
+			</div>
 		</div>
 	</div>
+
 	{% endfor %}
+
 </div>
 {% endblock %}

@@ -1,0 +1,57 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin-bottom: 0 !important;
+}
+
+#blog_posts {
+	background-color: #00000005;
+}
+#blog_posts:hover {
+	background-color: #e8e8e875;
+}
+
+.indent {
+	text-indent: 2em;
+}
+
+.like_post {
+	text-decoration: none;
+	display: flex;
+	justify-content: center;
+	color: gray;
+}
+.fa-thumbs-up {
+	padding: 0.15rem;
+}
+.fa-thumbs-up:hover {
+	color: #0d56fd;
+}
+.card-footer {
+	font-size: small;
+}
+.edit_btn {
+	position: absolute;
+	top: 1rem;
+	right: 1rem;
+	z-index: 10;
+	display: block;
+	padding: 0.25rem 0.5rem;
+	font-size: 0.65em;
+	color: #0d6efd;
+	background-color: #fff;
+	border: 1px solid;
+	border-radius: 0.25rem;
+}
+.edit_btn:hover {
+	color: #fff;
+	background-color: #0b5ed7;
+	border-color: #0a58ca;
+}
+.created_by {
+	font-size: 0.75rem;
+	text-align: end;
+}
