@@ -2,7 +2,8 @@ import os
 
 from flask import Flask
 
-from . import db, auth, about, contact, blog
+from . import db, auth, about, contact, blog, authors
+
 
 def create_app(test_config=None):
     # create and configure the app
@@ -37,6 +38,7 @@ def create_app(test_config=None):
     app.register_blueprint(about.bp)
     app.register_blueprint(contact.bp)
     app.register_blueprint(blog.bp)
+    app.register_blueprint(authors.bp)
     app.add_url_rule('/', endpoint='index')
 
     return app

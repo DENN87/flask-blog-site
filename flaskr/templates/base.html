@@ -19,10 +19,10 @@
 	<div class="container d-flex flex-wrap">
 		<ul class="nav me-auto">
 			<li class="nav-item">
- 				<a href="/" class="nav-link active text-white ps-0" aria-current="page"
-				style="font-family: 'Pacifico', cursive; font-size:2rem;">Blogs</a></li>
+ 				<a href="/" class="nav-link active ps-0 logo_blogs" aria-current="page"
+				>Blogs</a></li>
 			<li class="nav-item py-3">
-				<a href="/" class="nav-link link-dark active text-white" aria-current="page">Authors</a></li>
+				<a href="{{ url_for('authors.authors') }}" class="nav-link link-dark active text-white" aria-current="page">Authors</a></li>
 			<li class="nav-item py-3"><a href="{{ url_for('about.about') }}"
 									class="nav-link link-dark text-white">About</a>
 			</li>
@@ -37,7 +37,7 @@
 			</li>
 			<div class="dropdown text-end py-3">
 			  <a href="#" class="d-block text-warning text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-				<i class="bi bi-person-square text-warning" style="font-size: 1.5rem;"></i>
+				<i class="bi bi-person-square text-warning"></i>
 			  </a>
 			  <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
 				<li><a class="dropdown-item" href="#">Profile</a></li>

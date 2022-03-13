@@ -6,7 +6,26 @@ h5,
 h6 {
 	margin-bottom: 0 !important;
 }
-
+.logo_blogs {
+	font-family: "Pacifico", cursive;
+	font-size: 2rem;
+	color: white !important;
+}
+.nav-item .logo_blogs:hover {
+	color: #c19203 !important;
+}
+.nav-item a:hover {
+	color: #e8e8e875 !important;
+}
+.bi-person-square:hover {
+	color: #c19203 !important;
+}
+.dropdown-toggle {
+	font-size: 1.5rem;
+}
+.dropdown-menu {
+	margin-top: 0;
+}
 #blog_posts {
 	background-color: #00000005;
 }
@@ -24,10 +43,10 @@ h6 {
 	justify-content: center;
 	color: gray;
 }
-.fa-thumbs-up {
+.fas {
 	padding: 0.15rem;
 }
-.fa-thumbs-up:hover {
+.fas:hover {
 	color: #0d56fd;
 }
 .card-footer {
