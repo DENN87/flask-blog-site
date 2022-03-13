@@ -3,7 +3,7 @@ from werkzeug.exceptions import abort
 from flaskr.db import get_db
 from flaskr.auth import login_required
 
-blog_blueprint = Blueprint('blog', __name__)
+bp = Blueprint('blog', __name__)
 
 
 def get_post(id, check_author=True):
@@ -22,7 +22,7 @@ def get_post(id, check_author=True):
     return post
 
 
-@blog_blueprint.route('/')
+@bp.route('/')
 def index():
     db = get_db()
     posts = db.execute(
@@ -33,7 +33,7 @@ def index():
     return render_template('blog/index.html', posts=posts)
 
 
-@blog_blueprint.route('/create', methods=('GET', 'POST'))
+@bp.route('/create', methods=('GET', 'POST'))
 @login_required
 def create():
     if request.method == 'POST':
@@ -60,7 +60,7 @@ def create():
     return render_template('blog/create.html')
 
 
-@blog_blueprint.route('/<int:id>/update', methods('GET', 'POST'))
+@bp.route('/<int:id>/update', methods=('GET', 'POST'))
 @login_required
 def update(id):
     post = get_post(id)
@@ -89,9 +89,9 @@ def update(id):
     return render_template('blog/update.html', post=post)
 
 
-@blog_blueprint.route('/<int:id>/delete', methods=('POST',))
+@bp.route('/<int:id>/delete', methods=('POST',))
 @login_required
-def delete():
+def delete(id):
     get_post(id)
     db = get_db()
     db.execute('DELETE FROM post WHERE id = ?', (id,))

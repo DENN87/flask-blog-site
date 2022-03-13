@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="p-5 m-5 bg-light border rounded-3">
+<div class="p-5 m-5 bg-light border rounded-3 w-75 mx-auto">
 	<div class="container-fluid">
 		<h1 class="display-5 fw-bold">New Post</h1>
 		<form method="POST" class="item">
@@ -15,7 +15,7 @@
 					<textarea name="body" class="form-control" id="body" rows="5"
 							  required>{{ request.form['body'] }}</textarea>
 				</div>
-				<button type="submit" name="button" class="btn btn-primary m-top">Publish</button>
+				<button type="submit" name="button" class="btn btn-outline-dark m-top">Publish</button>
 			</div>
 		</form>
 	</div>

@@ -1,29 +1,25 @@
 import functools
-
-from flask import Blueprint, request, redirect, url_for, flash, render_template, session, g
+from flask import Blueprint, flash, g, redirect, render_template, request, session, url_for
 from werkzeug.security import generate_password_hash, check_password_hash
-
 from flaskr.db import get_db
 
-auth_blueprint = Blueprint('auth', __name__, url_prefix='/auth')
+bp = Blueprint('auth', __name__, url_prefix='/auth')
 
 
 # At the beginning of each request, if a user is logged in their
 # information should be loaded and made available to other views
-@auth_blueprint.before_request
+@bp.before_app_request
 def load_logged_in_user():
     user_id = session.get('user_id')
 
     if user_id is None:
         g.user = None
     else:
-        g.user = get_db().execute(
-            'SELECT * FROM user WHERE id = ?',
-            (user_id,)
-        ).fetchone()
+        g.user = get_db().execute('SELECT * FROM user WHERE id = ?',
+                                  (user_id,)).fetchone()
 
 
-@auth_blueprint.route('/register', methods=['GET', 'POST'])
+@bp.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
         username = request.form["username"]
@@ -59,7 +55,7 @@ def register():
     return render_template('auth/register.html')
 
 
-@auth_blueprint.route('/login', methods=['GET', 'POST'])
+@bp.route('/login', methods=('GET', 'POST'))
 def login():
     if request.method == 'POST':
         username = request.form["username"]
@@ -70,7 +66,6 @@ def login():
             'SELECT * FROM user WHERE username = ?',
             (username,)
         ).fetchone()
-        print(f'Logged In user: {user["username"]}')
 
         if user is None:
             error = 'Incorrect username.'
@@ -95,7 +90,7 @@ def login():
 
 
 # To log out, simply remove the user id from the session and redirect
-@auth_blueprint.route('/logout')
+@bp.route('/logout')
 def logout():
     session.clear()
     return redirect(url_for('index'))

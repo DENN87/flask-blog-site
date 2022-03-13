@@ -1,12 +1,12 @@
+from dotenv import load_dotenv
 from flask import Blueprint, render_template, request
 import smtplib
 import os
-from dotenv import load_dotenv
 
-contact_blueprint = Blueprint('contact', __name__)
+bp = Blueprint('contact', __name__)
 
 
-@contact_blueprint.route('/contact', methods=['GET', 'POST'])
+@bp.route('/contact', methods=['GET', 'POST'])
 def contact():
     if request.method == 'GET':
         # return for GET

@@ -1,9 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="p-5 m-5 bg-light border rounded-3">
+<div class="p-5 m-5 bg-light border rounded-3 w-75 mx-auto">
 	<div class="container-fluid">
 		<h1 class="display-5 fw-bold">Edit Post</h1>
+		<form id="submit-form" action="{{ url_for('blog.delete', id=post['id']) }}" method="POST">
+			<button type="submit" name="button" class="btn btn-danger m-top"
+					style="float: right; padding: 0.25rem; font-size: x-small;">Delete</button>
+		</form>
 		<form method="POST" class="item">
 			<div class="m-top">
 				<label for="title" class="form-label">Title</label>
@@ -13,15 +17,12 @@
 				<div class="m-top mb-3">
 					<label for="body" class="form-label mt-3">Body</label>
 					<textarea name="body" class="form-control" id="body" rows="5"
-							  required>{{ request.form['body'] or post['title'] }}</textarea>
+							  required>{{ request.form['body'] or post['body'] }}</textarea>
 				</div>
-				<button type="submit" name="button" class="btn btn-primary m-top">Publish</button>
+				<button type="submit" name="button" class="btn btn-outline-dark m-top">Publish</button>
 			</div>
 		</form>
-		<form action="{{ url_for('blog.delete', id=post['id']) }}" method="post">
-			<button type="submit" class="btn btn-danger m-top" onclick="return confirm('Are you sure?');">Delete
-			</button>
-		</form>
+
 	</div>
 </div>
 {% endblock %}
