@@ -25,7 +25,9 @@
 			</div>
 
 			<p class="text-secondary created_by m-0 px-3">
-				by <strong class="text-primary">{{ post['username'] }}</strong> on {{ post['created'].strftime('%Y-%m-%d') }}
+				by <a href="{{ url_for('authors.authors_by_username', username=post['username']) }}">
+						<strong class="text-primary">{{ post['username'] }}</strong>
+			       </a> on {{ post['created'].strftime('%Y-%m-%d') }}
 			</p>
 
 			<p class="card-body indent">{{ post['body'] }}</p>
