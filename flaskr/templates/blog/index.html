@@ -29,8 +29,8 @@
 						<strong class="text-primary">{{ post['username'] }}</strong>
 			       </a> on {{ post['created'].strftime('%Y-%m-%d') }}
 			</p>
-
-			<p class="card-body indent">{{ post['body'] }}</p>
+			<!--	Body text truncated with STRING[index,value]		-->
+			<p class="card-body indent">{{ post['body'][0:200] + '...' }}</p>
 
 			<div class="card-footer border-secondary p-1">
 			<ul class="nav col justify-content-center list-unstyled d-flex">
@@ -38,7 +38,7 @@
 			  <li class="ms-3 text-muted">
 					  {{ post['likes'] }}
 			  </li>
-			  <li class="ms-3"><a class="text-muted" href="#"><i class="fas fa-thumbs-down fa-md" aria-hidden="true"></i></a></li>
+			  <li class="ms-3"><a class="text-muted" href="{{ url_for('blog.dislike_blog', id=post['id']) }}"><i class="fas fa-thumbs-down fa-md" aria-hidden="true"></i></a></li>
 			</ul>
 			</div>
 		</div>

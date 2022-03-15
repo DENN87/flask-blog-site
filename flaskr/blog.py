@@ -99,6 +99,7 @@ def delete(id):
     return redirect(url_for('blog.index'))
 
 
+# thumbs up button
 @bp.route('/<int:id>/like')
 @login_required
 def like_blog(id):
@@ -112,8 +113,20 @@ def like_blog(id):
 
     return redirect(url_for('blog.index'))
 
-# def unlike_blog(id):
 
+# thumbs down button
+@bp.route('/<int:id>/dislike')
+@login_required
+def dislike_blog(id):
+    db = get_db()
+    db.execute(
+        'UPDATE post SET likes = likes - 1'
+        ' WHERE id = ?',
+        (id,)
+    )
+    db.commit()
+
+    return redirect(url_for('blog.index'))
 
 
 
