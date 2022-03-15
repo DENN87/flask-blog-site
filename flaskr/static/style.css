@@ -58,8 +58,8 @@ h6 {
 }
 .edit_btn {
 	position: absolute;
-	top: 1rem;
-	right: 1rem;
+	top: 0.5rem;
+	right: 0.5rem;
 	z-index: 10;
 	display: block;
 	padding: 0.25rem 0.5rem;
