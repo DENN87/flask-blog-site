@@ -74,6 +74,16 @@ h6 {
 	background-color: #0b5ed7;
 	border-color: #0a58ca;
 }
+.read-more-btn {
+	float: right;
+	text-indent: initial;
+	text-decoration: none;
+	font-size: 0.85em;
+	color: #0d6efd;
+}
+.read-more-btn:hover {
+	text-decoration: underline;
+}
 .created_by {
 	font-size: 0.75rem;
 	text-align: end;
