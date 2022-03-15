@@ -20,7 +20,7 @@ h6 {
 .nav-item a:hover {
 	color: #e8e8e875 !important;
 }
-.bi-person-square:hover {
+.nav-profile-menu:hover {
 	color: #c19203 !important;
 }
 .dropdown-toggle {

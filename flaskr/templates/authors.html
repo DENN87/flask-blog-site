@@ -1,11 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<!--pt-5 w-75 mx-auto-->
 
-	<div class="p-5 m-5 d-flex justify-content-center">
-
+	<div class="row m-5 d-flex justify-content-center">
+	{% if authors == [] %}
+		<div class="alert alert-warning text-center" role="alert">
+			<h3>No authors found in Database.</h3>
+		</div>
+	{% endif %}
 	{% for author in authors %}
-
 			  <a class="col-lg-4 text-center w-25 border author_card"
 			     href="{{ url_for('authors.authors_by_username', username=author['username']) }}">
 				<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" fill="currentColor"

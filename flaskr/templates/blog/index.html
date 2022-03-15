@@ -34,13 +34,9 @@
 
 			<div class="card-footer border-secondary p-1">
 			<ul class="nav col justify-content-center list-unstyled d-flex">
-			  <li class="ms-3"><a class="text-muted" href="#"><i class="fas fa-thumbs-up fa-md" aria-hidden="true"></i></a></li>
+			  <li class="ms-3"><a class="text-muted" href="{{ url_for('blog.like_blog', id=post['id']) }}"><i class="fas fa-thumbs-up fa-md" aria-hidden="true"></i></a></li>
 			  <li class="ms-3 text-muted">
-				  {% if post['likes'] != None %}
 					  {{ post['likes'] }}
-				  {% else %}
-					  0
-				  {% endif %}
 			  </li>
 			  <li class="ms-3"><a class="text-muted" href="#"><i class="fas fa-thumbs-down fa-md" aria-hidden="true"></i></a></li>
 			</ul>
