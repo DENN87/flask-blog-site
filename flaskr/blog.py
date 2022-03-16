@@ -110,6 +110,7 @@ def read_more_blog(id):
 
 # thumbs up button
 @bp.route('/<int:id>/like')
+@login_required
 def like_blog(id):
     db = get_db()
     db.execute(
@@ -123,6 +124,7 @@ def like_blog(id):
 
 # thumbs down button
 @bp.route('/<int:id>/dislike')
+@login_required
 def dislike_blog(id):
     db = get_db()
     db.execute(
