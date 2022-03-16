@@ -17,7 +17,7 @@ h6 {
 .nav-item .logo_blogs:hover {
 	color: #c19203 !important;
 }
-.nav-item a:hover {
+.nav-link.link-dark.text-white:hover {
 	color: #e8e8e875 !important;
 }
 .nav-profile-menu:hover {
@@ -104,6 +104,13 @@ h6 {
 svg,
 p {
 	color: black;
+}
+
+.blog-post-body-indv {
+	text-align: justify;
+	text-indent: 5rem;
+	line-height: 2rem;
+	margin-top: 2rem;
 }
 
 .footer {

@@ -1,15 +1,28 @@
-{% include "header.html" %}
+{% extends 'base.html' %}
 
+{% block content %}
 <!-- individual blog view -->
 
-<div class="container">
-	<div class="p-5 m-5 bg-light border rounded-3">
+	<div class="p-5 m-5 bg-light border rounded-3 w-75 mx-auto">
 		<div class="container-fluid py-5">
-			<h1 class="display-5 fw-bold">{{ blog.title }}</h1>
-			<p class="col-md-8 fs-4">{{ blog.body }}</p>
+			<h2 class="display-5 fw-bold text-center">{{ post['title'] }}</h2>
+
+			<p class="text-secondary created_by m-0 p-3">
+				by <a href="{{ url_for('authors.authors_by_username', username=post['username']) }}">
+						<strong class="text-primary">{{ post['username'] }}</strong>
+			       </a> on {{ post['created'].strftime('%Y-%m-%d') }}
+			</p>
+
+			<ul class="nav col justify-content-center list-unstyled d-flex">
+				<li class="ms-3"><a class="text-muted" href="{{ url_for('blog.like_blog', id=post['id']) }}"><i class="fas fa-thumbs-up fa-md" aria-hidden="true"></i></a></li>
+				<li class="ms-3 text-muted">{{ post['likes'] }}</li>
+				<li class="ms-3"><a class="text-muted" href="{{ url_for('blog.dislike_blog', id=post['id']) }}"><i class="fas fa-thumbs-down fa-md" aria-hidden="true"></i></a></li>
+			</ul>
+
+			<p class="blog-post-body-indv">{{ post['body']  }}</p>
 			<a href="/" class="btn btn-outline-dark" type="button">Back</a>
+
 		</div>
 	</div>
-</div>
 
-{% include "footer.html" %}
+{% endblock %}

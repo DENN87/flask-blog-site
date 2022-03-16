@@ -6,7 +6,7 @@ from flaskr.auth import login_required
 bp = Blueprint('blog', __name__)
 
 
-def get_post(id, check_author=True):
+def get_post(id):
     post = get_db().execute(
         'SELECT p.id, title, body, created, likes, author_id, username'
         ' FROM post p JOIN user u ON p.author_id = u.id'
@@ -16,8 +16,11 @@ def get_post(id, check_author=True):
     if post is None:
         abort(404, f"Post id {id} doesn't exist.")
 
-    if check_author and post['author_id'] != g.user['id']:
-        abort(403)
+    return post
+
+
+def get_post_checked_by_author(id, check_author=True):
+    post = get_post(id)
 
     return post
 
@@ -63,7 +66,7 @@ def create():
 @bp.route('/<int:id>/update', methods=('GET', 'POST'))
 @login_required
 def update(id):
-    post = get_post(id)
+    post = get_post_checked_by_author(id)
 
     if request.method == 'POST':
         title = request.form['title']
@@ -92,16 +95,21 @@ def update(id):
 @bp.route('/<int:id>/delete', methods=('POST',))
 @login_required
 def delete(id):
-    get_post(id)
+    get_post_checked_by_author(id)
     db = get_db()
     db.execute('DELETE FROM post WHERE id = ?', (id,))
     db.commit()
     return redirect(url_for('blog.index'))
 
 
+@bp.route('/<int:id>')
+def read_more_blog(id):
+    post = get_post(id)
+    return render_template('blog/blog.html', post=post)
+
+
 # thumbs up button
 @bp.route('/<int:id>/like')
-@login_required
 def like_blog(id):
     db = get_db()
     db.execute(
@@ -110,13 +118,11 @@ def like_blog(id):
         (id,)
     )
     db.commit()
-
-    return redirect(url_for('blog.index'))
-
+    post = get_post(id)
+    return render_template('blog/blog.html', post=post)
 
 # thumbs down button
 @bp.route('/<int:id>/dislike')
-@login_required
 def dislike_blog(id):
     db = get_db()
     db.execute(
@@ -125,11 +131,7 @@ def dislike_blog(id):
         (id,)
     )
     db.commit()
-
-    return redirect(url_for('blog.index'))
-
-
-
-
+    post = get_post(id)
+    return render_template('blog/blog.html', post=post)
 
 

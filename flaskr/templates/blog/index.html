@@ -27,22 +27,19 @@
 			<p class="text-secondary created_by m-0 px-3">
 				by <a href="{{ url_for('authors.authors_by_username', username=post['username']) }}">
 						<strong class="text-primary">{{ post['username'] }}</strong>
-			       </a> on {{ post['created'].strftime('%Y-%m-%d') }}
+			       </a>on {{ post['created'].strftime('%Y-%m-%d') }}
 			</p>
 			<!--	Body text truncated with STRING[index,value]		-->
 			<p class="card-body indent">{{ post['body'][0:200] + '...' }}
-				<a class="read-more-btn " href="{{ url_for('blog.update', id=post['id']) }}">Read more</a>
+				<a class="read-more-btn " href="{{ url_for('blog.read_more_blog', id=post['id']) }}">Read more</a>
 			</p>
 
 			<div class="card-footer border-secondary p-1">
 			<ul class="nav col justify-content-center list-unstyled d-flex">
-			  <li class="ms-3"><a class="text-muted" href="{{ url_for('blog.like_blog', id=post['id']) }}"><i class="fas fa-thumbs-up fa-md" aria-hidden="true"></i></a></li>
-			  <li class="ms-3 text-muted">
-					  {{ post['likes'] }}
-			  </li>
-			  <li class="ms-3"><a class="text-muted" href="{{ url_for('blog.dislike_blog', id=post['id']) }}"><i class="fas fa-thumbs-down fa-md" aria-hidden="true"></i></a></li>
+				<li class="ms-3 text-muted">Likes {{ post['likes'] }}</li>
 			</ul>
 			</div>
+
 		</div>
 	</div>
 
