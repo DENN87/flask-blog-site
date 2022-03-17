@@ -36,7 +36,7 @@
 				<a href="{{ url_for('blog.create') }}" class="nav-link link-dark active text-white">New Post</a>
 			</li>
 			<li class="nav-item py-3">
-				<p class="nav-link link-dark text-warning m-0">{{ g.user['username'] }}</p>
+				<p class="nav-link link-dark text-warning m-0">{{ g.user['username'].capitalize() }}</p>
 			</li>
 			<div class="dropdown text-end p-3">
 			  <a href="#" class="d-block text-warning text-decoration-none dropdown-toggle  nav-profile-menu" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -50,10 +50,10 @@
 			</div>
 			{% else %}
 			<li class="nav-item  py-3">
-				<a href="{{ url_for('auth.login') }}" class="btn btn-outline-light me-2">Sign In</a>
+				<a href="{{ url_for('auth.signin') }}" class="btn btn-outline-light me-3">Sign In</a>
 			</li>
 			<li class="nav-item  py-3">
-				<a href="{{ url_for('auth.register') }}" class="btn btn-warning">Sign Up</a>
+				<a href="{{ url_for('auth.signup') }}" class="btn btn-warning">Sign Up</a>
 			</li>
 			{% endif %}
 		</ul>
@@ -61,7 +61,7 @@
 	</nav>
 
 <!-- Main -->
-<div class="container">
+<div class="container px-5">
 	{% for message in get_flashed_messages() %}
 	<div class="alert alert-danger text-center w-75 mx-auto">ERROR {{ message }}</div>
 	{% endfor %}

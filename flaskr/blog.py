@@ -21,6 +21,9 @@ def get_post(id):
 
 def get_post_checked_by_author(id, check_author=True):
     post = get_post(id)
+    # check_author argument is defined so that the function can be used to get a post without checking the author
+    if check_author and post['author_id'] != g.user['id']:
+        abort(403)
 
     return post
 

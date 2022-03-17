@@ -19,6 +19,7 @@ def authors_by_username(username):
     posts_by_username = db.execute(
         'SELECT p.id, title, body, created, likes, author_id, username'
         ' FROM post p JOIN user u ON p.author_id = u.id'
-        ' WHERE u.username = ?', (username,)
+        ' WHERE u.username = ?'
+        ' ORDER BY created DESC', (username,)
     ).fetchall()
     return render_template('blog/index.html', posts=posts_by_username)

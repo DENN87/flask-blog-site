@@ -33,6 +33,9 @@ def create_app(test_config=None):
     # registering DB with app
     db.init_app(app)
 
+    # TO INITIALIZE DB from SQL FILE
+    # RUN: flask init-db
+
     # registering Blueprints
     app.register_blueprint(auth.bp)
     app.register_blueprint(about.bp)

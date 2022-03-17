@@ -1,10 +1,15 @@
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-	margin-bottom: 0 !important;
+.alert {
+	width: fit-content;
+	margin-left: auto !important;
+	margin-right: auto !important;
+	margin-top: 0.5rem !important;
+	margin-bottom: 0.5rem !important;
+	padding-top: 0.25rem !important;
+	padding-bottom: 0.25rem !important;
+}
+h5 {
+	margin: 0 !important;
+	font-size: small !important;
 }
 .nav-box-shadow:hover {
 	box-shadow: 0 0 1rem #21212176;
@@ -12,10 +17,7 @@ h6 {
 .logo_blogs {
 	font-family: "Pacifico", cursive;
 	font-size: 2rem;
-	color: white !important;
-}
-.nav-item .logo_blogs:hover {
-	color: #c19203 !important;
+	color: #eab925 !important;
 }
 .nav-link.link-dark.text-white:hover {
 	color: #e8e8e875 !important;
@@ -112,7 +114,9 @@ p {
 	line-height: 2rem;
 	margin-top: 2rem;
 }
-
+.btn-auth {
+	right: 1.75rem !important;
+}
 .footer {
 	border-top: 1px solid #dee2e6 !important;
 }

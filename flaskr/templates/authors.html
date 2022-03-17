@@ -1,14 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<!--pt-5 w-75 mx-auto-->
 
-	<div class="row m-5 d-flex justify-content-center">
 	{% if authors == [] %}
 		<div class="alert alert-warning text-center" role="alert">
-			<h3>No authors found in Database.</h3>
+			<h5>No Authors found in Database.</h5>
 		</div>
 	{% endif %}
+
+	<div class="row m-5 d-flex justify-content-center">
+
 	{% for author in authors %}
 			  <a class="col-lg-4 text-center w-25 border author_card"
 			     href="{{ url_for('authors.authors_by_username', username=author['username']) }}">
@@ -17,7 +18,7 @@
 				  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
 				  <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
 				</svg>
-				<h2>{{ author['username'] }}</h2>
+				<h2>{{ author['username'].capitalize() }}</h2>
 				<h5 class="text-muted">Role</h5>
 				<p class="py-2 m-0">Subtitle</p>
 			  </a>

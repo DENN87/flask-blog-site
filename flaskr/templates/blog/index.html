@@ -1,49 +1,67 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="row align-items-md-stretch pt-5 w-75 mx-auto">
 
 	{% if posts == [] %}
 	<div class="alert alert-warning text-center" role="alert">
-		<h3>No posts found in Database.</h3>
+		<h5>No Posts found in Database.</h5>
 	</div>
 	{% endif %}
 
-	{% for post in posts %}
+	<div class="row align-items-md-stretch pt-5 mx-auto">
 
+		<!--	Jumbo post if likes are greater than 50	-->
+		{% for post in posts %}
+			{% if post['likes']>50 %}
+			<div class="p-4 p-md-5 mb-4 text-white rounded bg-dark">
+				<div class="px-0">
+					{% if g.user['id'] == post['author_id'] %}
+						<a class="text-decoration-none btn btn-warning float-end py-1 fs-9" href="{{ url_for('blog.update', id=post['id']) }}">Edit</a>
+					{% endif %}
+					<h1 class="display-4 fst-italic fs-1">{{ post['title'] }}</h1>
+					<p class="text-muted created_by m-0 px-3">
+						by <a href="{{ url_for('authors.authors_by_username', username=post['username']) }}"><strong class="text-primary">{{ post['username'].capitalize() }}</strong></a> on {{ post['created'].strftime('%Y-%m-%d') }}
+					</p>
+					<p class="lead my-3 text-white">{{ post['body'][0:200] + '...'  }}</p>
+					<p class="lead mb-0"><a href="{{ url_for('blog.read_more_blog', id=post['id']) }}" class="fw-bold read-more-btn">Continue reading</a></p>
+					<i class="ms-3 text-muted">Likes {{ post['likes'] }}</i>
 
-	<div class="col-md-6 mb-4">
-		<div class="card h-100 border rounded-3" id="blog_posts" >
-			<div class="card-title p-3 m-0">
-			{% if g.user['id'] == post['author_id'] %}
-			<div class="float-end">
-				<a class="text-decoration-none edit_btn" href="{{ url_for('blog.update', id=post['id']) }}">Edit</a>
-			</div>
-			{% endif %}
-
-			<h3>{{ post['title'] }}</h3>
-			</div>
-
-			<p class="text-secondary created_by m-0 px-3">
-				by <a href="{{ url_for('authors.authors_by_username', username=post['username']) }}">
-						<strong class="text-primary">{{ post['username'] }}</strong>
-			       </a>on {{ post['created'].strftime('%Y-%m-%d') }}
-			</p>
-			<!--	Body text truncated with STRING[index,value]		-->
-			<p class="card-body indent">{{ post['body'][0:200] + '...' }}
-				<a class="read-more-btn " href="{{ url_for('blog.read_more_blog', id=post['id']) }}">Read more</a>
-			</p>
-
-			<div class="card-footer border-secondary p-1">
-			<ul class="nav col justify-content-center list-unstyled d-flex">
-				<li class="ms-3 text-muted">Likes {{ post['likes'] }}</li>
-			</ul>
+				</div>
 			</div>
 
-		</div>
+		{% else %}
+
+			<div class="col-md-6 mb-4">
+				<div class="card h-100 border rounded-3" id="blog_posts" >
+					<div class="card-title p-3 m-0">
+					{% if g.user['id'] == post['author_id'] %}
+					<div class="float-end">
+						<a class="text-decoration-none edit_btn btn-warning" href="{{ url_for('blog.update', id=post['id']) }}">Edit</a>
+					</div>
+					{% endif %}
+
+					<h3>{{ post['title'] }}</h3>
+					</div>
+
+					<p class="text-secondary created_by m-0 px-3">
+						by <a href="{{ url_for('authors.authors_by_username', username=post['username']) }}"><strong class="text-primary">{{ post['username'].capitalize() }}</strong></a> on {{ post['created'].strftime('%Y-%m-%d') }}
+					</p>
+					<!--	Body text truncated with STRING[index,value]		-->
+					<p class="card-body indent">{{ post['body'][0:200] + '...' }}
+						<a class="read-more-btn " href="{{ url_for('blog.read_more_blog', id=post['id']) }}">Read more</a>
+					</p>
+
+					<div class="card-footer border-secondary p-1">
+					<ul class="nav col justify-content-center list-unstyled d-flex">
+						<li class="ms-3 text-muted">Likes {{ post['likes'] }}</li>
+					</ul>
+					</div>
+
+				</div>
+			</div>
+
+		{% endif %}
+		{% endfor %}
+
 	</div>
-
-	{% endfor %}
-
-</div>
 {% endblock %}

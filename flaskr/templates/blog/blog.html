@@ -8,9 +8,7 @@
 			<h2 class="display-5 fw-bold text-center">{{ post['title'] }}</h2>
 
 			<p class="text-secondary created_by m-0 p-3">
-				by <a href="{{ url_for('authors.authors_by_username', username=post['username']) }}">
-						<strong class="text-primary">{{ post['username'] }}</strong>
-			       </a> on {{ post['created'].strftime('%Y-%m-%d') }}
+				by <a href="{{ url_for('authors.authors_by_username', username=post['username']) }}"><strong class="text-primary">{{ post['username'].capitalize() }}</strong></a> on {{ post['created'].strftime('%Y-%m-%d') }}
 			</p>
 
 			<ul class="nav col justify-content-center list-unstyled d-flex">
@@ -20,7 +18,7 @@
 			</ul>
 
 			<p class="blog-post-body-indv">{{ post['body']  }}</p>
-			<a href="/" class="btn btn-outline-dark" type="button">Back</a>
+			<a href="/" class="btn btn-outline-primary float-end" type="button">Back</a>
 
 		</div>
 	</div>
