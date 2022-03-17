@@ -7,10 +7,10 @@ bp = Blueprint('authors', __name__)
 @bp.route('/authors')
 def authors():
     db = get_db()
-    authors = db.execute(
+    all_authors = db.execute(
         'SELECT username FROM user',
     ).fetchall()
-    return render_template('authors.html', authors=authors)
+    return render_template('authors.html', authors=all_authors)
 
 
 @bp.route('/authors/<string:username>')
